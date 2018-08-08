@@ -1,14 +1,25 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+
+  <div text-center>
+      <img src="../assets/imgs/logo_pockets.png" alt="logotipo" style="width:300px">
+  </div>
+
+  <div class="bienvenido">
+      <h1 text-center style="color:black">¡Bienvenido!</h1>
+      <hr>
+      <p>
+        Con la AppLive podrás tener un registro en tiempo real de tu consumo simplemente con escanear el <strong>código QR</strong> que se te proporcione. ¡Está de Pockets..!
+      </p>
+  </div>
+
+
 </ion-content>
+
+<ion-footer no-border no-shadow style="background: transparent">
+
+      <button ion-button full icon-start no-margin color="danger">
+          <ion-icon name="qr-scanner"></ion-icon>
+          <label>Escanear código</label>
+      </button>
+
+</ion-footer>
