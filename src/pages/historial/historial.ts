@@ -12,5 +12,8 @@ export class HistorialPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
+  verDetalle(){
+    this.navCtrl.push("TicketInfoPage");
+  }
 
 }
