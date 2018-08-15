@@ -10,6 +10,7 @@ import { ScanProvider } from '../providers/scan/scan';
 import { TicketProvider } from '../providers/ticket/ticket';
 
 import { HttpModule } from '@angular/http';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { HttpModule } from '@angular/http';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ScanProvider,
-    TicketProvider
+    TicketProvider,
+    BarcodeScanner
   ]
 })
 export class AppModule {}
