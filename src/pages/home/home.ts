@@ -21,6 +21,7 @@ export class HomePage {
   }
 
   escanear(){
+    /*
     this.barcodeScanner.scan().then( barcodeData => {
       var paramsString = barcodeData.text;
       var searchParams= new URLSearchParams(paramsString);
@@ -35,6 +36,9 @@ export class HomePage {
       console.error('Error: '+ err);
       this.mostrar_msj("Error: "+ err);
     });
+    */
+    this._sp.buscarDatos("sucursal=1&ticket=123456");
+    this.navCtrl.push("TicketInfoPage");
   }
 
   mostrar_msj( mensaje:string ){

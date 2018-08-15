@@ -10,6 +10,9 @@ import { ScanProvider } from '../providers/scan/scan';
 import { TicketProvider } from '../providers/ticket/ticket';
 
 import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
+import { IonicStorageModule } from '@ionic/storage';
+
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
@@ -20,7 +23,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

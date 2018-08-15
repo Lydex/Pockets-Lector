@@ -1,32 +1,35 @@
-import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { APP_URL } from '../../config/url.servicios';
-import 'rxjs/add/operator/map';
+import { Storage } from '@ionic/storage';
 
 @Injectable()
 export class TicketProvider {
 
-  ticket_info: any[] = [];
+  ticket = {};
+  lista_tickets: any[] = [];
 
-  constructor(public http: Http) {
-    //console.log('Hello TicketProvider Provider');
-    //this.verTicket(1);
+  constructor(private storage: Storage) {
   }
 
-  /*
-  verTicket(ticket_num:any){
-    let url = APP_URL + "/ticket_info/" + ticket_num;
+  cargarTickets(){
+    this.storage.ready()
+                .then(  ()=>{
+                  this.storage.get("tickets").then( tickets => {
+                    if(tickets){
+                      this.lista_tickets = tickets;
+                    }
 
-    this.http.get( url )
-              .map( resp => resp  )
-              .subscribe( response => {
-                console.log(response);
-              });
+                  });
+                });
   }
-  */
 
-  obtenerTickets(){
+  guardarTicket( ticket:object ){
+    this.lista_tickets.push(ticket);
+    this.ticket = ticket;
 
+    this.storage.ready()
+                .then(  ()=>{
+                  this.storage.set("tickets", ticket);
+                });
   }
 
 }

@@ -9,9 +9,13 @@ import { TicketProvider } from '../../providers/ticket/ticket';
 })
 export class TicketInfoPage {
 
+  ticket:any = {};
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private _tp: TicketProvider) {
+
+              this.ticket = this.navParams.get("ticket");
   }
 
 
