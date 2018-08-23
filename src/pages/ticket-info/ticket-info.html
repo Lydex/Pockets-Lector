@@ -28,18 +28,20 @@
   </ion-list>
 
   <ion-list>
-    <ion-item class="producto">
-      <ion-avatar item-start>
-        <ion-icon name="beer"></ion-icon>
-      </ion-avatar>
-      <h2>Nombre producto</h2>
-      <p>$0.00</p>
+    <ion-item class="producto" *ngFor="let item of ticket.lista_prod">
+      <ion-badge item-start color="bg-green">
+        <span>1</span>
+      </ion-badge>
+      {{ item.producto }}
+      <p item-end>{{ item.precio | currency }}</p>
     </ion-item>
   </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar class="producto" transparent>
-  <h2 text-right>Total: $0.00</h2>
+
+          <h2 text-right>Total: {{ ticket_total | currency }}</h2>
+
   </ion-toolbar>
 </ion-footer>

@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Observable } from 'rxjs/Rx';
 import { HomePage } from '../home/home';
-import { ScanProvider } from '../../providers/scan/scan';
-import { APP_URL } from '../../config/url.servicios';
+import { TicketProvider } from '../../providers/ticket/ticket';
 import { HttpClient } from '@angular/common/http';
 
 
@@ -16,13 +15,24 @@ export class TicketInfoPage {
 
   validar:any;
   ticket:any = {};
+  ticket_total:number = 0;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public toastCtrl: ToastController,
               public http: HttpClient,
-              private _scanProv: ScanProvider) {
+              private _ticketProv: TicketProvider) {
 
+
+  }
+
+  calcularTotal(){
+    if(this.ticket.lista_prod[0]){
+      this.ticket_total = 0;
+      this.ticket.lista_prod.forEach( item => {
+        this.ticket_total += item.precio;
+      });
+    }
 
   }
 
@@ -42,10 +52,13 @@ export class TicketInfoPage {
   }
 
   ionViewDidLoad () {
+    this.calcularTotal();
+
     if( this.ticket.estatus === 1 ){
-      this.validar = Observable.interval(20000).subscribe( x => {
-        this.obtenerTicket( this.ticket.id ).then( (updated_ticket)=>{
+      this.validar = Observable.interval(20000).subscribe( () => {
+        this._ticketProv.actualizarTicket( this.ticket ).then( (updated_ticket)=>{
           this.ticket = updated_ticket;
+          this.calcularTotal();
           if ( this.ticket.estatus === 0){
             this.validar.unsubscribe();
           }
@@ -54,22 +67,7 @@ export class TicketInfoPage {
     }
   }
 
-  obtenerTicket(ticket_id:number){
-    let url = APP_URL + "/ticket_info/" + ticket_id;
 
-    return new Promise ( (resolve, reject) => {
-      this.http.get( url )
-              .subscribe( data => {
-                if( data ){
-                  this._scanProv.guardarTicket(data);
-                  resolve(data);
-                } else {
-                  resolve(false);
-                }
-              });
-    });
-
-  }
 
 
 

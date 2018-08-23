@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { PipesModule } from '../pipes/pipes.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     IonicModule.forRoot(MyApp),
     HttpModule,
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    PipesModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

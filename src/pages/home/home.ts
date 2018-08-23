@@ -46,7 +46,7 @@ export class HomePage {
       });
     } else {
       // Pruebas en PC
-      this._scanProv.buscarDatos("sucursal=1&ticket=123456").then( (ticket)=>{
+      this._scanProv.buscarDatos("sucursal=1&ticket=123467").then( (ticket)=>{
         if(ticket){
           this.navCtrl.push("TicketInfoPage", { ticket });
         }

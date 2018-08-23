@@ -19,6 +19,7 @@ export class ScanProvider {
       this.http.get( url )
               .subscribe( data => {
                 if( data ){
+                  data['lista_prod'] = JSON.parse(data['lista_prod']);
                   this.guardarTicket(data);
                   resolve(data);
                 } else {
@@ -59,8 +60,9 @@ export class ScanProvider {
 
       this.lista_tickets.forEach((item, index) => {
 
-        if( (item.id == ticket.id ) ){
+        if( (item.tienda_id == ticket.tienda_id && item.ticket_num == ticket.ticket_num) ){
           this.lista_tickets[index] = item;
+          console.log(this.lista_tickets[index])
           encontrado = true;
         }
 
