@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { TicketProvider } from '../../providers/ticket/ticket';
-import { TicketInfoPage } from '../ticket-info/ticket-info';
+import { ScanProvider } from '../../providers/scan/scan';
 
 @IonicPage()
 @Component({
@@ -9,14 +8,18 @@ import { TicketInfoPage } from '../ticket-info/ticket-info';
   templateUrl: 'historial.html',
 })
 export class HistorialPage {
-  lista_tickets: any[] = [];
+  lista_tickets: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _tp: TicketProvider) {
-    this.lista_tickets = _tp.lista_tickets;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private _scanProv: ScanProvider) {
+    _scanProv.cargarTickets().then( ()=>{
+      this.lista_tickets = _scanProv.lista_tickets;
+      console.log(this.lista_tickets);
+    })
+
   }
 
   verDetalle(ticket:object){
-    this.navCtrl.push("TicketInfoPage", ticket);
+    this.navCtrl.push("TicketInfoPage", { ticket });
   }
 
 }

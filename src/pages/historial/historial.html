@@ -8,11 +8,13 @@
 
 
 <ion-content padding>
-
         <ion-item *ngFor="let ticket of lista_tickets">
-            <ion-icon name="unlock" item-start large ></ion-icon>
-            <h2>Ticket #{{ ticket.ticket_num }} | <small style="color: red;">{{ ticket.estatus }}</small></h2>
-            <small>{{ ticket.fecha }}</small>
-            <p item-end style="color:green" (click)="verDetalle(ticket)" >Ver</p>
+          <ion-icon name="unlock" item-start large ></ion-icon>
+          <h2>Ticket #{{ ticket.ticket_num }} |
+            <small *ngIf="ticket.estatus == 1; else cerrada" style="color: red;">Abierta</small>
+            <ng-template #cerrada> <small style="color: blue;">Cerrada</small> </ng-template>
+          </h2>
+          <small>{{ ticket.fecha }}</small>
+          <button ion-button item-end style="width:50px;" (click)="verDetalle(ticket)" color="bg-green" round>Ver</button>
         </ion-item>
 </ion-content>

@@ -1,35 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage';
+import { ScanProvider } from '../scan/scan';
+import { APP_URL } from '../../config/url.servicios';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class TicketProvider {
 
-  ticket = {};
-  lista_tickets: any[] = [];
+  constructor(private storage: Storage, private _scanProv: ScanProvider) {}
 
-  constructor(private storage: Storage) {
-  }
-
-  cargarTickets(){
-    this.storage.ready()
-                .then(  ()=>{
-                  this.storage.get("tickets").then( tickets => {
-                    if(tickets){
-                      this.lista_tickets = tickets;
-                    }
-
-                  });
-                });
-  }
-
-  guardarTicket( ticket:object ){
-    this.lista_tickets.push(ticket);
-    this.ticket = ticket;
-
-    this.storage.ready()
-                .then(  ()=>{
-                  this.storage.set("tickets", ticket);
-                });
-  }
 
 }

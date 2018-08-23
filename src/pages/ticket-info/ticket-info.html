@@ -1,25 +1,45 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>Detalle de ticket: {{ ticket.ticket_num }}</ion-title>
+    <ion-title>Detalle de ticket: {{ ticket.ticket_num }} </ion-title>
   </ion-navbar>
 
 </ion-header>
 
 <ion-content padding>
   <ion-list>
-    <ion-item>
+      <ion-item class="producto" no-padding>
+          <ion-grid>
+              <ion-row>
+                <ion-col col-6>
+                  Sucursal:
+                  <p> Las Américas</p>
+                </ion-col>
+                <ion-col col-6>
+                  <div>
+                      <div *ngIf="ticket.estatus == 1; else cerrada"> Estatus:<p style="display: inline;color: red;"> Abierta</p> </div>
+                      <ng-template #cerrada> Estatus:<p style="color: blue;"> Cerrada</p> </ng-template>
+                  </div>
+                  <p>Fecha: {{ ticket.fecha }}</p>
+                </ion-col>
+              </ion-row>
+          </ion-grid>
+      </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item class="producto">
       <ion-avatar item-start>
         <ion-icon name="beer"></ion-icon>
       </ion-avatar>
-      <h2>Tarro oscuro</h2>
-      <p>$79.90</p>
+      <h2>Nombre producto</h2>
+      <p>$0.00</p>
     </ion-item>
   </ion-list>
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-  <h2 text-right>Total: $79.9</h2>
+  <ion-toolbar class="producto" transparent>
+  <h2 text-right>Total: $0.00</h2>
   </ion-toolbar>
 </ion-footer>
