@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar color="dark">
-    <ion-title>Detalle de ticket: {{ ticket.ticket_num }} </ion-title>
+    <ion-title item-start>Detalle de ticket: {{ ticket.ticket_num }}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,8 +17,12 @@
                 </ion-col>
                 <ion-col col-6>
                   <div>
-                      <div *ngIf="ticket.estatus == 1; else cerrada"> Estatus:<p style="display: inline;color: red;"> Abierta</p> </div>
-                      <ng-template #cerrada> Estatus:<p style="color: blue;"> Cerrada</p> </ng-template>
+                      <div *ngIf="ticket.estatus == 1; else cerrada">
+                        Estatus:<p style="display: inline;color: red;"> Abierta</p>
+                      </div>
+                      <ng-template #cerrada>
+                        Estatus:<p style="display: inline;color: blue;"> Cerrada</p>
+                      </ng-template>
                   </div>
                   <p>Fecha: {{ ticket.fecha }}</p>
                 </ion-col>
@@ -28,20 +32,25 @@
   </ion-list>
 
   <ion-list>
-    <ion-item class="producto" *ngFor="let item of ticket.lista_prod">
-      <ion-badge item-start color="bg-green">
-        <span>1</span>
-      </ion-badge>
-      {{ item.producto }}
-      <p item-end>{{ item.precio | currency }}</p>
-    </ion-item>
+    <div *ngIf="ticket.lista_prod[0]; else sinProductos">
+      <ion-item class="producto" *ngFor="let item of ticket.lista_prod">
+        <ion-badge item-start color="bg-green">
+          <span>1</span>
+        </ion-badge>
+        {{ item.producto }}
+        <p item-end>{{ item.precio | currency }}</p>
+      </ion-item>
+    </div>
+    <ng-template #sinProductos>
+        <ion-item class="producto">
+            <p text-center> Al parecer aún no se han registrado productos a tu cuenta. </p>
+        </ion-item>
+    </ng-template>
   </ion-list>
 </ion-content>
 
 <ion-footer>
   <ion-toolbar class="producto" transparent>
-
-          <h2 text-right>Total: {{ ticket_total | currency }}</h2>
-
+    <h2 text-right>Total: {{ ticket_total | currency }}</h2>
   </ion-toolbar>
 </ion-footer>

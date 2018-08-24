@@ -8,7 +8,7 @@
 
 
 <ion-content padding>
-        <ion-item *ngFor="let ticket of lista_tickets">
+        <ion-item *ngFor="let ticket of _scanProv.lista_tickets">
           <ion-icon name="unlock" item-start large ></ion-icon>
           <h2>Ticket #{{ ticket.ticket_num }} |
             <small *ngIf="ticket.estatus == 1; else cerrada" style="color: red;">Abierta</small>

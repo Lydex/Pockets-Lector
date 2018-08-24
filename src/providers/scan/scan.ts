@@ -8,7 +8,6 @@ import { HttpClient } from '@angular/common/http';
 export class ScanProvider {
 
   lista_tickets: any = [];
-1234
 
   constructor( private storage: Storage, private platform: Platform, public http: HttpClient){}
 
@@ -19,7 +18,9 @@ export class ScanProvider {
       this.http.get( url )
               .subscribe( data => {
                 if( data ){
-                  data['lista_prod'] = JSON.parse(data['lista_prod']);
+                  if(data['lista_prod']){
+                    data['lista_prod'] = JSON.parse(data['lista_prod']);
+                  }
                   this.guardarTicket(data);
                   resolve(data);
                 } else {
@@ -58,27 +59,30 @@ export class ScanProvider {
   guardarTicket( ticket:any ){
       var encontrado = false;
 
-      this.lista_tickets.forEach((item, index) => {
+      this.lista_tickets.forEach((old, index) => {
 
-        if( (item.tienda_id == ticket.tienda_id && item.ticket_num == ticket.ticket_num) ){
-          this.lista_tickets[index] = item;
-          console.log(this.lista_tickets[index])
+        if( (old.tienda_id == ticket.tienda_id && old.ticket_num == ticket.ticket_num) ){
+          this.lista_tickets[index] = ticket;
           encontrado = true;
+          console.log("Ticket existente actualizado.");
         }
 
       });
 
       if(!encontrado){
         this.lista_tickets.push( ticket );
+        console.log("Ticket nuevo agregado.")
       }
 
       if( this.platform.is("cordova") ){
         this.storage.ready()
                   .then(  ()=>{
                     this.storage.set("tickets", this.lista_tickets);
+                    console.log("Ticket almacenado.");
                   });
       } else {
         localStorage.setItem('tickets', JSON.stringify(this.lista_tickets) );
+        console.log("Ticket almacenado.");
       }
 
   }

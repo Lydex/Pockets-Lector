@@ -53,10 +53,14 @@ export class TicketInfoPage {
 
   ionViewDidLoad () {
     this.calcularTotal();
+    this.monitorearTicket();
+  }
 
+  monitorearTicket(){
     if( this.ticket.estatus === 1 ){
       this.validar = Observable.interval(20000).subscribe( () => {
         this._ticketProv.actualizarTicket( this.ticket ).then( (updated_ticket)=>{
+          console.log(updated_ticket)
           this.ticket = updated_ticket;
           this.calcularTotal();
           if ( this.ticket.estatus === 0){

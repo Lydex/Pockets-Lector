@@ -8,15 +8,8 @@ import { ScanProvider } from '../../providers/scan/scan';
   templateUrl: 'historial.html',
 })
 export class HistorialPage {
-  lista_tickets: any = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private _scanProv: ScanProvider) {
-    _scanProv.cargarTickets().then( ()=>{
-      this.lista_tickets = _scanProv.lista_tickets;
-      console.log(this.lista_tickets);
-    })
-
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams, public _scanProv: ScanProvider) {}
 
   verDetalle(ticket:object){
     this.navCtrl.push("TicketInfoPage", { ticket });
