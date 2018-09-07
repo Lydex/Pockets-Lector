@@ -17,7 +17,7 @@ export class ScanProvider {
     return new Promise ( (resolve, reject) => {
       this.http.get( url )
               .subscribe( data => {
-                if( data ){
+                if( data != [] ){
                   if(data['lista_prod']){
                     data['lista_prod'] = JSON.parse(data['lista_prod']);
                   }
@@ -61,7 +61,7 @@ export class ScanProvider {
 
       this.lista_tickets.forEach((old, index) => {
 
-        if( (old.tienda_id == ticket.tienda_id && old.ticket_num == ticket.ticket_num) ){
+        if( (old._token == ticket._token ) ){
           this.lista_tickets[index] = ticket;
           encontrado = true;
           console.log("Ticket existente actualizado.");

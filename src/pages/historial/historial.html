@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="dark">
+  <ion-navbar color="beh-blue">
     <ion-title>Historial</ion-title>
   </ion-navbar>
 
@@ -8,13 +8,28 @@
 
 
 <ion-content padding>
+      <div *ngIf="_scanProv.lista_tickets[0]; else sinHistorial">
         <ion-item *ngFor="let ticket of _scanProv.lista_tickets">
-          <ion-icon name="unlock" item-start large ></ion-icon>
+          <img *ngIf="ticket.sucursal.cSucConcepto == 3 || ticket.sucursal.cSucConcepto == 5 || ticket.sucursal.cSucConcepto == 6; else sanmartin"
+                src="../assets/imgs/logo_pockets.jpg" alt="pockets" style="width: 50px" item-start large>
+          <ng-template #sanmartin>
+              <img *ngIf="ticket.sucursal.cSucConcepto == 2;else wildrooster" src="../assets/imgs/logo_sanmartin.jpg" alt="sanmartin" style="width: 50px" item-start large>
+          </ng-template>
+          <ng-template #wildrooster>
+              <img src="../assets/imgs/logo_wildrooster.jpg" alt="wildrooster" style="width: 50px" item-start large>
+          </ng-template>
+
           <h2>Ticket #{{ ticket.ticket_num }} |
             <small *ngIf="ticket.estatus == 1; else cerrada" style="color: red;">Abierta</small>
             <ng-template #cerrada> <small style="color: blue;">Cerrada</small> </ng-template>
           </h2>
           <small>{{ ticket.fecha }}</small>
-          <button ion-button item-end style="width:50px;" (click)="verDetalle(ticket)" color="bg-green" round>Ver</button>
+          <button ion-button item-end style="width:50px;" (click)="verDetalle(ticket)" color="beh-yellow" round>Ver</button>
         </ion-item>
+      </div>
+      <ng-template #sinHistorial>
+        <ion-item text-center>
+          <h3>No existe historial que mostrar</h3>
+        </ion-item>
+      </ng-template>
 </ion-content>

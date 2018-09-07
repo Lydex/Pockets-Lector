@@ -16,6 +16,9 @@ import { IonicStorageModule } from '@ionic/storage';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { PipesModule } from '../pipes/pipes.module';
 
+import { TooltipsModule } from 'ionic-tooltips';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -23,11 +26,14 @@ import { PipesModule } from '../pipes/pipes.module';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp),
     HttpModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    PipesModule
+    PipesModule,
+    TooltipsModule,
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [

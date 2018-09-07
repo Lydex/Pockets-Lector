@@ -16,7 +16,8 @@
 // automatically applied to the <body> element in the app.
 
 ion-content{
-    background: linear-gradient( rgba(255, 255, 255, 0.9), rgba(0, 105, 35, 0.9)), url("../assets/imgs/background_home.jpg");
+    //background: linear-gradient( rgba(255, 255, 255, 0.9), rgba(0, 105, 35, 0.9)), url("../assets/imgs/fondo2.png");
+    background: url("../assets/imgs/fondo2.png");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -25,3 +26,7 @@ ion-content{
     -o-background-size: cover;
     background-size: cover;
   }
+
+  tooltip-box     {
+    z-index: 100000;
+}

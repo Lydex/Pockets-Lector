@@ -1,6 +1,6 @@
 <ion-header>
 
-  <ion-navbar color="dark">
+  <ion-navbar color="beh-blue">
     <ion-title item-start>Detalle de ticket: {{ ticket.ticket_num }}</ion-title>
   </ion-navbar>
 
@@ -8,12 +8,12 @@
 
 <ion-content padding>
   <ion-list>
-      <ion-item class="producto" no-padding>
+      <ion-item color="beh-yellow" no-padding>
           <ion-grid>
               <ion-row>
                 <ion-col col-6>
                   Sucursal:
-                  <p> Las Américas</p>
+                  <p> {{ ticket.sucursal.cSucAlias }}</p>
                 </ion-col>
                 <ion-col col-6>
                   <div>
@@ -21,7 +21,7 @@
                         Estatus:<p style="display: inline;color: red;"> Abierta</p>
                       </div>
                       <ng-template #cerrada>
-                        Estatus:<p style="display: inline;color: blue;"> Cerrada</p>
+                        Estatus:<p style="display: inline;"> Cerrada</p>
                       </ng-template>
                   </div>
                   <p>Fecha: {{ ticket.fecha }}</p>
@@ -34,9 +34,6 @@
   <ion-list>
     <div *ngIf="ticket.lista_prod[0]; else sinProductos">
       <ion-item class="producto" *ngFor="let item of ticket.lista_prod">
-        <ion-badge item-start color="bg-green">
-          <span>1</span>
-        </ion-badge>
         {{ item.producto }}
         <p item-end>{{ item.precio | currency }}</p>
       </ion-item>
@@ -50,7 +47,8 @@
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar class="producto" transparent>
-    <h2 text-right>Total: {{ ticket_total | currency }}</h2>
+  <ion-toolbar color="beh-blue" style="color:white">
+    <h2 text-right no-margin>Total: {{ ticket_total | currency }}</h2>
+    <p text-right no-margin> <small>*Todos nuestros precios incluyen IVA.</small>  </p>
   </ion-toolbar>
 </ion-footer>

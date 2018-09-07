@@ -1,23 +1,26 @@
 <ion-content padding>
 
   <div text-center>
-      <img src="../assets/imgs/logo_pockets.png" alt="logotipo" style="width:300px">
+      <img src="../assets/imgs/logo.png" alt="logotipo" style="width:180px; margin:25px">
   </div>
 
   <div class="bienvenido">
-      <h1 text-center style="color:black">¡Bienvenido!</h1>
+      <h1 text-center style="color:black">¡Bienvenido a Check-It!</h1>
       <hr>
       <p>
-        Con la AppLive podrás tener un registro en tiempo real de tu consumo simplemente con escanear el <strong>código QR</strong> que se te proporcione. ¡Está de Pockets..!
+        Con Check-It! podrás tener seguimiento al momento de tu consumo simplemente con escanear el <strong>código QR</strong> que se te proporcione.
       </p>
   </div>
 
+  <div text-center>
+    <img src="../assets/imgs/logobeh.png" alt="logotipo" style="width:100px; margin:25px">
+  </div>
 
 </ion-content>
 
 <ion-footer no-border no-shadow style="background: transparent">
 
-      <button (click)="escanear()" ion-button full icon-start no-margin color="danger">
+      <button (click)="escanear()" ion-button full icon-start no-margin color="beh-blue">
           <ion-icon name="qr-scanner"></ion-icon>
           <label>Escanear código</label>
       </button>

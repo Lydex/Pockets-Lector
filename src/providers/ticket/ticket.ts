@@ -10,7 +10,7 @@ export class TicketProvider {
   constructor(private storage: Storage, private _scanProv: ScanProvider, private http: HttpClient) {}
 
   actualizarTicket(ticket:any){
-    let url = APP_URL + "/ticket_info?ticket="+ticket.ticket_num+"&sucursal="+ticket.tienda_id;
+    let url = APP_URL + "/ticket_info?_token="+ticket._token;
 
     return new Promise ( (resolve, reject) => {
 

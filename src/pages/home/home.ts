@@ -32,7 +32,7 @@ export class HomePage {
         var paramsString = barcodeData.text;
         var searchParams= new URLSearchParams(paramsString);
 
-        if( searchParams.has("sucursal") && searchParams.has("ticket") ){
+        if( searchParams.has("_token") ){
           this._scanProv.buscarDatos(searchParams.toString()).then( (ticket)=>{
             this.navCtrl.push("TicketInfoPage", { ticket });
           });
@@ -46,7 +46,7 @@ export class HomePage {
       });
     } else {
       // Pruebas en PC
-      this._scanProv.buscarDatos("sucursal=666&ticket=331822").then( (ticket)=>{
+      this._scanProv.buscarDatos("_token=k8eCZFTdeWD2S1LMv4v3a7TXjoRq9LOH").then( (ticket)=>{
         if(ticket){
           this.navCtrl.push("TicketInfoPage", { ticket });
         }
