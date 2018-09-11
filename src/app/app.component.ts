@@ -21,11 +21,11 @@ export class MyApp {
       if( platform.is("cordova") ){
         this.storage.ready()
                   .then(  ()=>{
-                    const terminos = this.storage.get("terminos");
-                    if(!terminos){
-                      this.verTerminos();
-                    }
-
+                    this.storage.get("terminos").then( terminos =>{
+                      if(!terminos){
+                        this.verTerminos();
+                      }
+                    });
                   });
       } else {
         const terminos = localStorage.getItem("terminos");
