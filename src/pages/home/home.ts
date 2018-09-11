@@ -37,7 +37,7 @@ export class HomePage {
             if(!this.isEmptyObject(ticket)){
               this.navCtrl.push("TicketInfoPage", { ticket });
             } else {
-              this.mostrar_msj("No se encontró el ticket: intente nuevamente...");
+              this.mostrar_msj("No se encontró la cuenta: intente nuevamente...");
             }
 
           });
@@ -51,11 +51,11 @@ export class HomePage {
       });
     } else {
       // Pruebas en PC
-      this._scanProv.buscarDatos("_token=ib6voRqccC3dCxnBnv65w0TN6ADltkIc").then( (ticket)=>{
+      this._scanProv.buscarDatos("_token=gStVw50KXMQHlRHSGGFjiT7EOuomFqQB").then( (ticket)=>{
         if(!this.isEmptyObject(ticket)){
           this.navCtrl.push("TicketInfoPage", { ticket });
         } else {
-          this.mostrar_msj("No se encontró el ticket: intente nuevamente...");
+          this.mostrar_msj("No se encontró la cuenta: intente nuevamente...");
         }
       });
     }

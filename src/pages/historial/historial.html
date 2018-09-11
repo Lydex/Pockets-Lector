@@ -19,17 +19,17 @@
               <img src="../assets/imgs/logo_wildrooster.jpg" alt="wildrooster" style="width: 50px" item-start large>
           </ng-template>
 
-          <h3>Cuenta #{{ ticket.ticket_num }} |
+          <p>Cuenta #{{ ticket.ticket_num }} |
             <small *ngIf="ticket.estatus == 1; else cerrada" style="color: red;">ABIERTA</small>
             <ng-template #cerrada> <small style="color: blue;">CERRADA</small> </ng-template>
-          </h3>
+          </p>
           <small>{{ ticket.fecha }}</small>
           <button ion-button item-end style="width:50px;" (click)="verDetalle(ticket)" color="beh-yellow" round>Ver</button>
         </ion-item>
       </div>
       <ng-template #sinHistorial>
         <ion-item text-center>
-          <h3>No existe historial que mostrar</h3>
+          <p>No existe historial que mostrar</p>
         </ion-item>
       </ng-template>
 </ion-content>

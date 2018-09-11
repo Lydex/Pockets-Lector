@@ -17,7 +17,8 @@ export class ScanProvider {
     return new Promise ( (resolve, reject) => {
       this.http.get( url )
               .subscribe( data => {
-                if( data != [] ){
+
+                if( !this.isEmptyObject(data) ){
                   if(data['lista_prod']){
                     data['lista_prod'] = JSON.parse(data['lista_prod']);
                   }
@@ -26,6 +27,7 @@ export class ScanProvider {
                 } else {
                   resolve(false);
                 }
+
               });
     });
 
@@ -85,6 +87,10 @@ export class ScanProvider {
         console.log("Ticket almacenado.");
       }
 
+  }
+
+  isEmptyObject(obj) {
+    return Object.keys(obj).every(k => !Object.keys(obj[k]).length);
   }
 
 }
