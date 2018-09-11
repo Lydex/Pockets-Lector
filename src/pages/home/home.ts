@@ -34,7 +34,12 @@ export class HomePage {
 
         if( searchParams.has("_token") ){
           this._scanProv.buscarDatos(searchParams.toString()).then( (ticket)=>{
-            this.navCtrl.push("TicketInfoPage", { ticket });
+            if(!this.isEmptyObject(ticket)){
+              this.navCtrl.push("TicketInfoPage", { ticket });
+            } else {
+              this.mostrar_msj("No se encontró el ticket: intente nuevamente...");
+            }
+
           });
         } else {
           this.mostrar_msj("El código escáneado no es valido.")
@@ -46,9 +51,11 @@ export class HomePage {
       });
     } else {
       // Pruebas en PC
-      this._scanProv.buscarDatos("_token=k8eCZFTdeWD2S1LMv4v3a7TXjoRq9LOH").then( (ticket)=>{
-        if(ticket){
+      this._scanProv.buscarDatos("_token=ib6voRqccC3dCxnBnv65w0TN6ADltkIc").then( (ticket)=>{
+        if(!this.isEmptyObject(ticket)){
           this.navCtrl.push("TicketInfoPage", { ticket });
+        } else {
+          this.mostrar_msj("No se encontró el ticket: intente nuevamente...");
         }
       });
     }
@@ -60,6 +67,10 @@ export class HomePage {
       duration: 2500
     });
     toast.present();
+  }
+
+  isEmptyObject(obj) {
+    return Object.keys(obj).every(k => !Object.keys(obj[k]).length);
   }
 
 }

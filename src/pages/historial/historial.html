@@ -19,10 +19,10 @@
               <img src="../assets/imgs/logo_wildrooster.jpg" alt="wildrooster" style="width: 50px" item-start large>
           </ng-template>
 
-          <h2>Ticket #{{ ticket.ticket_num }} |
-            <small *ngIf="ticket.estatus == 1; else cerrada" style="color: red;">Abierta</small>
-            <ng-template #cerrada> <small style="color: blue;">Cerrada</small> </ng-template>
-          </h2>
+          <h3>Cuenta #{{ ticket.ticket_num }} |
+            <small *ngIf="ticket.estatus == 1; else cerrada" style="color: red;">ABIERTA</small>
+            <ng-template #cerrada> <small style="color: blue;">CERRADA</small> </ng-template>
+          </h3>
           <small>{{ ticket.fecha }}</small>
           <button ion-button item-end style="width:50px;" (click)="verDetalle(ticket)" color="beh-yellow" round>Ver</button>
         </ion-item>
